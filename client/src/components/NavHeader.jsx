@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../actions/userAction/userAction";
+import watcherImage from "../assets/images/watcher.jpeg";
 
 export default function NavHeader() {
   const Navigate = useNavigate();
@@ -17,11 +18,7 @@ export default function NavHeader() {
     <nav className=" p-4 fixed w-full z-10 bg-white">
       <div className="container mx-auto flex justify-between items-center">
         <Link className="flex items-center" to="/">
-          <img
-            src="../src/assets/images/watcher.jpeg"
-            alt="Logo"
-            className="h-8 w-auto mr-2"
-          />
+          <img src={watcherImage} alt="Logo" className="h-8 w-auto mr-2" />
           <span className="text-purple-600 text-lg font-semibold">Watcher</span>
         </Link>
         <div>
