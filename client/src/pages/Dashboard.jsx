@@ -9,9 +9,6 @@ export default function DashboardPage() {
       <div className="container mx-auto pt-20">
         <AddMovie />
       </div>
-      <div className="container mx-auto pt-16 pb-16">
-        <CardContainer edit={true} />
-      </div>
     </>
   );
 }

@@ -14,7 +14,7 @@ export default function NavHeader() {
   };
 
   return (
-    <nav className=" p-4 fixed w-full z-10">
+    <nav className=" p-4 fixed w-full z-10 bg-white">
       <div className="container mx-auto flex justify-between items-center">
         <Link className="flex items-center" to="/">
           <img
