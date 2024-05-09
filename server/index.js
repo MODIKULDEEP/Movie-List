@@ -6,6 +6,7 @@ const connectDatabase = require("./database/db");
 const routes = require("./routes/index");
 const errorMiddleware = require("./utils/globalErrorHandler");
 const asyncErrorHandler = require("./utils/asyncErrorHandler");
+require("dotenv").config();
 
 // const numCPUs = require('node:os').availableParallelism();
 
