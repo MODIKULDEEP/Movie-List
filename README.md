@@ -13,6 +13,16 @@
 2. Install Node.js modules: `npm install`.
 3. Start the development server: `npm run dev`.
 
+## Login Credentials
+
+Admin Login:
+Email: admin@gmail.com
+Password: Admin@123
+
+User Login:
+Email: user@gmail.com
+Password: User@123
+
 ## Requirements
 
 - Node.js (latest version 20.13.0 recommended)
