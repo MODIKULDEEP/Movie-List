@@ -8,10 +8,6 @@ const errorMiddleware = require("./utils/globalErrorHandler");
 const asyncErrorHandler = require("./utils/asyncErrorHandler");
 require("dotenv").config();
 
-// const numCPUs = require('node:os').availableParallelism();
-
-// console.log(numCPUs)
-
 // Create an Express application
 const app = express();
 

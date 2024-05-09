@@ -2,20 +2,33 @@ import NavHeader from "../components/NavHeader";
 import CardContainer from "../components/cardContainer";
 import { getMovie } from "../api/movieApis";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
   const [orignalMovies, setOrignalMovies] = useState([]);
   const [FilterValues, setFilterValues] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     getMovieData();
   }, []);
 
   const getMovieData = async () => {
-    const movieData = await getMovie();
-    console.log(movieData.movies);
-    setMovies(movieData.movies);
-    setOrignalMovies(movieData.movies);
+    try {
+      const movieData = await getMovie();
+      if (movieData.success) {
+        setLoading(false);
+        setMovies(movieData.movies);
+        setOrignalMovies(movieData.movies);
+      } else {
+        setLoading(false);
+        toast.error(movieData.error.data.message);
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error(error);
+    }
   };
 
   // search filter
@@ -39,21 +52,30 @@ export default function HomePage() {
 
   return (
     <>
+      <ToastContainer position="top-center" autoClose={3000} />
       <NavHeader />
-      <div className="container mx-auto pt-20">
-        <input
-          type="text"
-          id="Search"
-          name="Search"
-          placeholder="Type To Search"
-          value={FilterValues}
-          onChange={handleFilter}
-          className="border border-gray-300 rounded px-4 py-2"
-        />
-      </div>
-      <div className="container mx-auto pt-8 pb-16">
-        <CardContainer edit={false} movies={movies} />
-      </div>
+      {loading ? (
+        <h2 className="text-center text-purple-500 font-semibold py-2 px-4 rounded mx-auto pt-20">
+          Loading Movie Data Please Wait...........
+        </h2>
+      ) : (
+        <>
+          <div className="container mx-auto pt-20">
+            <input
+              type="text"
+              id="Search"
+              name="Search"
+              placeholder="Type To Search"
+              value={FilterValues}
+              onChange={handleFilter}
+              className="border border-gray-300 rounded px-4 py-2"
+            />
+          </div>
+          <div className="container mx-auto pt-8 pb-16">
+            <CardContainer edit={false} movies={movies} />
+          </div>
+        </>
+      )}
     </>
   );
 }

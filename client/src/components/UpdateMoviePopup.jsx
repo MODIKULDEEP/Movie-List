@@ -2,7 +2,6 @@ import { useState } from "react";
 import { creteMovie } from "../api/movieApis";
 
 export default function UpdateMoviePopup({ isOpen, onClose, editMovie }) {
-  console.log(editMovie);
   const [movieName, setMovieName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -20,16 +19,13 @@ export default function UpdateMoviePopup({ isOpen, onClose, editMovie }) {
     formData.append("image", image);
 
     try {
-      console.log(formData);
       const data = await creteMovie(formData);
-      console.log("Response:", data);
       // Clear form fields after saving
       setMovieName("");
       setDescription("");
       setImage(null); // Reset image to null
       onClose(); // Close the popup
     } catch (error) {
-      console.error("Error:", error);
       // Handle error
     }
   };

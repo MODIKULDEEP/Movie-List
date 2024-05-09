@@ -19,16 +19,13 @@ export default function MovieDataPopup({ isOpen, onClose }) {
     formData.append("image", image);
 
     try {
-      console.log(formData);
       const data = await creteMovie(formData);
-      console.log("Response:", data);
       // Clear form fields after saving
       setMovieName("");
       setDescription("");
       setImage(null); // Reset image to null
       onClose(); // Close the popup
     } catch (error) {
-      console.error("Error:", error);
       // Handle error
     }
   };

@@ -47,7 +47,6 @@ export const logoutUser = () => async (dispatch) => {
     const { data } = await axios.get(`${url}/api/v1/auth/logout`, {
       withCredentials: true,
     });
-    console.log(data);
     dispatch({ type: "LOGOUT_SUCCESS", payload: data });
   } catch (error) {
     dispatch({ type: "LOAD_FAIL", payload: error });

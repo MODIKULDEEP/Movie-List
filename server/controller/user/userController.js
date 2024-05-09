@@ -83,7 +83,6 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
       .status(200)
       .json({ success: true, message: "Password reset email sent" });
   } catch (error) {
-    console.error("Error sending password reset email:", error);
     return next(new ErrorHandler(500, "Failed to send password reset email"));
   }
 });
@@ -148,7 +147,6 @@ exports.updateUserPassword = asyncErrorHandler(async (req, res, next) => {
     ) {
       return next(new ErrorHandler(401, "Invalid or expired token"));
     }
-    console.error("Error updating password:", error);
     return next(new ErrorHandler(500, "Internal Server Error"));
   }
 });

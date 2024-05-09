@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { deleteMovie, updateMovie } from "../api/movieApis";
 import Pagination from "./Pagination";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const url = import.meta.env.VITE_BACKEND_APP_URI;
 
@@ -24,17 +26,19 @@ export default function CardContainer({ edit, movies = [], onClose }) {
       return;
     }
     const movieData = { movieName, description, id: editMovie._id };
-
     try {
       const data = await updateMovie(movieData);
-      // Clear form fields after saving
-      setMovieName("");
-      setDescription("");
-      handleClosePopup(); // Close the popup
-      onClose();
+      if (data.success) {
+        setMovieName("");
+        setDescription("");
+        handleClosePopup(); // Close the popup
+        onClose();
+        toast.success(data.message);
+      } else {
+        toast.error(data.error.data.message);
+      }
     } catch (error) {
-      console.error("Error:", error);
-      // Handle error
+      toast.error(error);
     }
   };
 
@@ -45,13 +49,20 @@ export default function CardContainer({ edit, movies = [], onClose }) {
     handleClosePopup(); // Close the popup
   };
   const deleteMovieData = async (id) => {
-    const deletedMovie = await deleteMovie(id);
-    onClose();
+    try {
+      const deletedMovie = await deleteMovie(id);
+      if (deletedMovie.success) {
+        toast.success(deletedMovie.message);
+        onClose();
+      } else {
+        toast.error(deletedMovie.error.data.message);
+      }
+    } catch (error) {
+      toast.error(error);
+    }
   };
   const handleEditClick = (movieId) => {
-    console.log("Edit button clicked for movie ID:", movieId);
     const movieById = movies.find((m) => m._id === movieId);
-    console.log("Movie to edit:", movieById);
     setEditMovie(movieById);
     setMovieName(movieById.movieName);
     setDescription(movieById.description);
@@ -68,6 +79,7 @@ export default function CardContainer({ edit, movies = [], onClose }) {
 
   return (
     <>
+      <ToastContainer position="top-center" autoClose={3000} />
       {movies.length === 0 ? (
         <h2 className="text-center text-purple-500 font-semibold py-2 px-4 rounded">
           No Movies avialable

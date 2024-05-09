@@ -52,13 +52,7 @@ exports.imageUpload = (req, res, next) => {
     }
     // If file uploaded successfully, delete the old image if a new one is uploaded
     if (req.file && req.body.old_image) {
-      fs.unlink(path.join("uploads", req.body.old_image), (error) => {
-        if (error) {
-          console.error("Error deleting old image:", error);
-        } else {
-          console.log("Old image deleted successfully");
-        }
-      });
+      fs.unlink(path.join("uploads", req.body.old_image), (error) => {});
     } else {
     }
     // Attach image path to the request object

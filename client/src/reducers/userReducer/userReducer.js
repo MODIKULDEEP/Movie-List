@@ -15,7 +15,6 @@ export const userReducer = createReducer(userInitailState, (builder) => {
     state.isAuthenticated = false;
   });
   builder.addCase("LOGIN_SUCCESS", (state, action) => {
-    console.log(action.payload);
     state.loading = false;
     state.user = action.payload.user;
     state.isAuthenticated = action.payload.success || true;

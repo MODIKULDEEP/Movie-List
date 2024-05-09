@@ -7,7 +7,6 @@ export default function NavHeader() {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.User);
-  console.log(user);
 
   const logout = async () => {
     await dispatch(logoutUser());

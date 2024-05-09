@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginHandler } from "../actions/userAction/userAction";
 import FormAction from "./FormAction";
-import FormExtra from "./FormExtra";
+// import FormExtra from "./FormExtra";
 import eyeOpen from "../assets/images/eyeOpen.svg";
 import eyeClose from "../assets/images/eyeClose.svg";
 
@@ -68,9 +68,7 @@ export default function Login() {
 
   // Handle Login API Integration here
   const authenticateUser = async () => {
-    await dispatch(
-      loginHandler(loginState.email, loginState.password)
-    );
+    await dispatch(loginHandler(loginState.email, loginState.password));
   };
 
   return (
@@ -127,7 +125,7 @@ export default function Login() {
             )}
           </div>
         </div>
-        <FormExtra />
+        {/* <FormExtra /> */}
         <FormAction handleSubmit={handleSubmit} text="Login" />
       </form>
     </>

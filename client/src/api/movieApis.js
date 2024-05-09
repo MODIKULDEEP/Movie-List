@@ -31,7 +31,6 @@ export const creteMovie = async (movieData) => {
 
 // update Movie API
 export const updateMovie = async (movieData) => {
-  console.log(movieData);
   try {
     const { data } = await axios.post(
       `${url}/api/v1/movie/update`,
