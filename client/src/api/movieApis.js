@@ -8,13 +8,58 @@ const formDataconfig = {
   withCredentials: true,
 };
 
-// Login API
+const jsonconfig = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: true,
+};
+
+// create Movie API
 export const creteMovie = async (movieData) => {
   try {
     const { data } = await axios.post(
       `${url}/movie/create`,
       movieData,
       formDataconfig
+    );
+    return data;
+  } catch (error) {
+    return { success: false, error: error.response };
+  }
+};
+
+// update Movie API
+export const updateMovie = async (movieData) => {
+  console.log(movieData);
+  try {
+    const { data } = await axios.post(
+      `${url}/movie/update`,
+      movieData,
+      jsonconfig
+    );
+    return data;
+  } catch (error) {
+    return { success: false, error: error.response };
+  }
+};
+
+// get Movies Api
+export const getMovie = async () => {
+  try {
+    const { data } = await axios.get(`${url}/movie/getMovies`, jsonconfig);
+    return data;
+  } catch (error) {
+    return { success: false, error: error.response };
+  }
+};
+
+// delete Movie Api
+export const deleteMovie = async (movieID) => {
+  try {
+    const { data } = await axios.delete(
+      `${url}/movie/delete?id=${movieID}`,
+      jsonconfig
     );
     return data;
   } catch (error) {

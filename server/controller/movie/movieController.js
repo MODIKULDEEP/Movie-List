@@ -28,7 +28,6 @@ exports.movieCreate = asyncErrorHandler(async (req, res, next) => {
 
 exports.movieUpdate = asyncErrorHandler(async (req, res, next) => {
   const { id, movieName, description } = req.body;
-  const movie_photo = req.imagePath || null;
 
   // Validation: Check if required fields are provided
   if (!id || !movieName || !description) {
@@ -41,7 +40,6 @@ exports.movieUpdate = asyncErrorHandler(async (req, res, next) => {
     {
       movieName,
       description,
-      movie_photo,
     },
     { new: true }
   );
