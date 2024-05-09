@@ -75,14 +75,14 @@ export default function CardContainer({ edit, movies = [], onClose }) {
       ) : (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {movies.map((movie) => (
+            {currentMovies.map((movie) => (
               <div
                 key={movie._id}
                 className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
               >
                 <img
                   className="rounded-t-lg"
-                  src={`${url}/image/${movie.movie_photo}`}
+                  src={`${url}/api/v1/image/${movie.movie_photo}`}
                   alt={movie.movieName}
                 />
                 <div className="p-5">

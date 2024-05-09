@@ -61,7 +61,7 @@ export default function AddMovie() {
         className="border border-gray-300 rounded px-4 py-2"
       />
       <MovieDataPopup isOpen={isPopupOpen} onClose={handleClosePopup} />
-      <div className="container mx-auto pt-16 pb-16">
+      <div className="container mx-auto pt-8 pb-16">
         <CardContainer edit={true} movies={movies} onClose={handleClosePopup} />
       </div>
     </div>

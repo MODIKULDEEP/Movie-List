@@ -4,9 +4,10 @@ export default function Pagination({
   paginate,
   currentPage,
 }) {
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
+  for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
 
@@ -26,8 +27,10 @@ export default function Pagination({
           <li key={number}>
             <button
               onClick={() => paginate(number)}
-              className={`px-3 py-1 text-sm font-semibold leading-tight border border-gray-300 bg-white text-gray-800 hover:bg-gray-100 ${
-                currentPage === number ? "bg-gray-300" : ""
+              className={`px-3 py-1 text-sm font-semibold leading-tight border border-gray-300 text-gray-800 hover:bg-gray-100 ${
+                currentPage === number
+                  ? "bg-purple-500 hover:bg-purple-600 text-white font-semibold"
+                  : ""
               }`}
             >
               {number}
@@ -37,7 +40,7 @@ export default function Pagination({
         <li>
           <button
             onClick={() => paginate(currentPage + 1)}
-            disabled={currentPage === Math.ceil(totalItems / itemsPerPage)}
+            disabled={currentPage === totalPages}
             className="px-3 py-1 text-sm font-semibold leading-tight border border-gray-300 bg-white text-gray-800 hover:bg-gray-100"
           >
             Next

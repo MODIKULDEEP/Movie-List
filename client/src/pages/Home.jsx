@@ -51,7 +51,7 @@ export default function HomePage() {
           className="border border-gray-300 rounded px-4 py-2"
         />
       </div>
-      <div className="container mx-auto pt-20">
+      <div className="container mx-auto pt-8 pb-16">
         <CardContainer edit={false} movies={movies} />
       </div>
     </>
