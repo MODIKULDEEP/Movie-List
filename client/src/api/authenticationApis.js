@@ -17,7 +17,7 @@ const formDataconfig = {
 export const loginApi = async (loginCred) => {
   try {
     const { data } = await axios.post(
-      `${url}/auth/login`,
+      `${url}/api/v1/auth/login`,
       loginCred,
       jsonconfig
     );
@@ -33,7 +33,7 @@ export const loginApi = async (loginCred) => {
 // Logout Api
 export const logoutApi = async () => {
   try {
-    const { data } = await axios.get(`${url}/auth/logout`, jsonconfig);
+    const { data } = await axios.get(`${url}/api/v1/auth/logout`, jsonconfig);
     if (data.success) {
       localStorage.setItem("token", "");
     }

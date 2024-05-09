@@ -12,7 +12,7 @@ const jsonconfig = {
 export const CreateUserApi = async (userData) => {
   try {
     const { data } = await axios.post(
-      `${url}/user/create`,
+      `${url}/api/v1/user/create`,
       userData,
       jsonconfig
     );

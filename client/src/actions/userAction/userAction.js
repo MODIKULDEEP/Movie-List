@@ -18,7 +18,7 @@ export const loginHandler = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: "LOGIN_REQUEST" });
     const { data } = await axios.post(
-      `${url}/auth/login`,
+      `${url}/api/v1/auth/login`,
       { email, password },
       jsonconfig
     );
@@ -32,7 +32,7 @@ export const loginHandler = (email, password) => async (dispatch) => {
 export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: "LOAD_USER_REQUEST" });
-    const { data } = await axios.get(`${url}/auth/loaduser`, {
+    const { data } = await axios.get(`${url}/api/v1/auth/loaduser`, {
       withCredentials: true,
     });
     dispatch({ type: "LOAD_USER_SUCCESS", payload: data });
@@ -44,7 +44,7 @@ export const loadUser = () => async (dispatch) => {
 export const logoutUser = () => async (dispatch) => {
   try {
     dispatch({ type: "LOAD_USER_REQUEST" });
-    const { data } = await axios.get(`${url}/auth/logout`, {
+    const { data } = await axios.get(`${url}/api/v1/auth/logout`, {
       withCredentials: true,
     });
     console.log(data);

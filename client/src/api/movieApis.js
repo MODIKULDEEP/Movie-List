@@ -19,7 +19,7 @@ const jsonconfig = {
 export const creteMovie = async (movieData) => {
   try {
     const { data } = await axios.post(
-      `${url}/movie/create`,
+      `${url}/api/v1/movie/create`,
       movieData,
       formDataconfig
     );
@@ -34,7 +34,7 @@ export const updateMovie = async (movieData) => {
   console.log(movieData);
   try {
     const { data } = await axios.post(
-      `${url}/movie/update`,
+      `${url}/api/v1/movie/update`,
       movieData,
       jsonconfig
     );
@@ -47,7 +47,10 @@ export const updateMovie = async (movieData) => {
 // get Movies Api
 export const getMovie = async () => {
   try {
-    const { data } = await axios.get(`${url}/movie/getMovies`, jsonconfig);
+    const { data } = await axios.get(
+      `${url}/api/v1/movie/getMovies`,
+      jsonconfig
+    );
     return data;
   } catch (error) {
     return { success: false, error: error.response };
@@ -58,7 +61,7 @@ export const getMovie = async () => {
 export const deleteMovie = async (movieID) => {
   try {
     const { data } = await axios.delete(
-      `${url}/movie/delete?id=${movieID}`,
+      `${url}/api/v1/movie/delete?id=${movieID}`,
       jsonconfig
     );
     return data;
